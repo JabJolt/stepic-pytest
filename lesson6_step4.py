@@ -182,7 +182,7 @@ def task6_someones():
 
     try: 
         link = "http://suninjuly.github.io/registration2.html"
-        
+
         browser = webdriver.Chrome()
         browser.get(link)
 
@@ -207,4 +207,54 @@ def task6_someones():
         time.sleep(1)
         browser.quit()
 
-task6_someones()        
+# task6_someones()
+
+def task2_1():
+
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    import time
+
+    try: 
+        link = "https://suninjuly.github.io/math.html"
+
+        # browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome()
+        browser.get(link)
+
+        def calc(x):
+            import math
+            return str(math.log(abs(12*math.sin(int(x)))))
+        
+        x_element = browser.find_element(By.CSS_SELECTOR, '.nowrap[id="input_value"]')
+        x = x_element.text
+        print(x)
+        y = calc(x)
+        
+        text_field = browser.find_element(By.CSS_SELECTOR, '.form-control[id="answer"]')
+        text_field.send_keys(y)
+        print(text_field)
+
+        # set checkbox & radio
+        checkbox = browser.find_element(By.CSS_SELECTOR, '.form-check-input[id="robotCheckbox"]')
+        checkbox.click()
+        radio = browser.find_element(By.CSS_SELECTOR, '.form-check-input[id="robotsRule"]')
+        radio.click()
+
+        button = browser.find_element(By.CSS_SELECTOR, "button.btn")
+        button.click()
+
+        time.sleep(10)
+
+        # welcome_text_elt = browser.find_element(By.TAG_NAME, "h1")
+        # welcome_text = welcome_text_elt.text
+
+        # assert "Congratulations! You have successfully registered!" == welcome_text
+    except Exception as e:
+        print(e)
+
+    finally:
+        time.sleep(10)
+    #     browser.quit()
+
+# task2_1()
